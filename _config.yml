@@ -1,0 +1,35 @@
+title: EducaGestãoDF
+description: Sistema de Gestão Escolar que funciona 100% offline
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# GitHub Pages settings
+url: "https://seu-usuario.github.io"
+baseurl: "/EducaGestaoDF"
+
+# Navigation
+header_pages:
+  - home.html
+  - alunos.html
+  - professores.html
+  - turmas.html
+  - notas.html
+  - calendario.html
+  - relatorios.html
+
+# Social links
+github_username: seu-usuario
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude files
+exclude:
+  - "*.bat"
+  - "*.py"
+  - node_modules/
+  - .git/
+  - .gitignore

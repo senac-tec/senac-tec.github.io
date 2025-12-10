@@ -1,255 +1,276 @@
-# 🎓 EducaGestaoDF - Sistema de Gestão Escolar
+# 🎓 EducaGestãoDF - Sistema de Gestão Escolar
 
-Sistema completo de gestão escolar com **servidor integrado**, banco de dados automático e interface moderna.
+<div align="center">
 
-## 🚀 Inicialização Rápida
+![Sistema de Gestão Escolar](https://img.shields.io/badge/Sistema-Gestão%20Escolar-blue?style=for-the-badge)
+![Versão](https://img.shields.io/badge/Versão-2.0-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Funcionando-success?style=for-the-badge)
+![Offline](https://img.shields.io/badge/Funciona-Offline-orange?style=for-the-badge)
 
-### **🆕 Método 1: Sistema Local (SUPER SIMPLES!)**
+**Sistema completo de gestão escolar que funciona 100% offline!**
 
-**Não precisa instalar NADA! Funciona offline!**
+[🚀 **DEMO AO VIVO**](https://seu-usuario.github.io/EducaGestaoDF/home.html) | [📖 **Documentação**](#-funcionalidades) | [🛠️ **Instalação**](#-como-usar)
 
-```bash
-# Windows: Clique duas vezes
-abrir-sistema-local.bat
-
-# Ou abra diretamente qualquer página HTML
-home.html
-alunos.html
-professores.html
-# etc...
-```
-
-**✅ Vantagens:**
-- Zero configuração
-- Funciona sem internet
-- Dados salvos automaticamente
-- Todas as páginas funcionam offline
-
-### **🧪 Testar o Sistema:**
-
-```bash
-# Para verificar se tudo está funcionando
-testar-sistema.bat
-```
-
-### **Método 2: Sistema Completo (Com Servidor)**
-
-**Windows:**
-```bash
-# Clique duas vezes no arquivo
-iniciar.bat
-```
-
-**Linux/Mac:**
-```bash
-# No terminal
-./iniciar.sh
-```
-
-### **Método 3: Linha de Comando**
-
-```bash
-# Executar diretamente
-python app.py
-
-# Ou usando npm
-npm run escola
-```
-
-## 🎯 Duas Versões Disponíveis
-
-### 🌟 **Versão Local** (`sistema-local.html`)
-- ✅ **Zero configuração** - Clique duplo e funciona
-- ✅ **Sem servidor** - Abre direto no navegador
-- ✅ **Funciona offline** - Não precisa de internet
-- ✅ **Dados automáticos** - Salva no localStorage
-- ✅ **Compartilhamento fácil** - Um arquivo só
-- ⚠️ **Recursos básicos** - CRUD simples
-
-### 🚀 **Versão Completa** (`app.py`)
-- ✅ **Recursos avançados** - Relatórios, gráficos, etc
-- ✅ **Banco SQLite** - Dados persistentes
-- ✅ **API REST** - Integração com outros sistemas
-- ✅ **Multi-usuário** - Sistema de login
-- ⚠️ **Precisa Python** - Instalação necessária
-
-## ✨ O que mudou?
-
-### 🔄 **Sistema Integrado**
-- ✅ **Um único arquivo** (`app.py`) roda tudo
-- ✅ **Banco de dados automático** - cria se não existir
-- ✅ **Servidor web integrado** - não precisa de dois terminais
-- ✅ **Inicialização automática** do navegador
-
-### 📁 **Estrutura Simplificada**
-
-```
-gestao-escolar/
-├── app.py                # 🆕 SERVIDOR INTEGRADO (novo)
-├── iniciar.bat           # 🆕 Script Windows (novo)
-├── iniciar.sh            # 🆕 Script Linux/Mac (novo)
-├── start.py              # ⚠️  Método antigo (ainda funciona)
-├── backend/              # ⚠️  Pasta antiga (ainda funciona)
-├── css/                  # Estilos CSS
-├── js/                   # JavaScript
-├── *.html                # Páginas do sistema
-└── escola.db             # Banco SQLite (criado automaticamente)
-```
-
-## 🎯 Como Funciona Agora
-
-1. **Execute um comando** → `python app.py`
-2. **Sistema inicia automaticamente:**
-   - 🗄️ Cria banco de dados (se não existir)
-   - 🌐 Inicia servidor web (porta 8000)
-   - 🔧 Inicia API (porta 5000)
-   - 🌍 Abre navegador automaticamente
-3. **Pronto para usar!** → `http://localhost:8000`
-
-## 💡 Vantagens do Sistema Integrado
-
-### ✅ **Mais Simples**
-- Um único arquivo para executar
-- Não precisa gerenciar dois servidores
-- Instalação automática de dependências
-
-### ✅ **Mais Confiável**
-- Banco de dados criado automaticamente
-- Não perde dados entre execuções
-- Tratamento de erros melhorado
-
-### ✅ **Mais Rápido**
-- Inicialização em segundos
-- Abertura automática do navegador
-- Feedback visual do status
-
-## ✨ Funcionalidades Principais
-
-### 🏠 **Dashboard Inteligente**
-- ✅ **Estatísticas em tempo real** do banco de dados
-- ✅ **Atividades recentes** automáticas
-- ✅ **Mini calendário** com eventos
-- ✅ **Indicador de conexão** visual
-
-### 👥 **Gestão Completa de Pessoas**
-- ✅ **Alunos**: CRUD completo com validações
-- ✅ **Professores**: Especialização por disciplina
-- ✅ **Busca avançada** por qualquer campo
-- ✅ **Status dinâmicos** (Ativo/Inativo/Licença)
-
-### 🏫 **Gestão Acadêmica**
-- ✅ **Turmas**: Capacidade e horários
-- ✅ **Matrículas**: Controle de vínculos
-- ✅ **Notas**: Sistema completo por disciplina/bimestre
-- ✅ **Frequência**: Controle de presença por turma
-
-### 📅 **Calendário Escolar**
-- ✅ **Eventos** com tipos diferenciados
-- ✅ **Associação** com turmas e professores
-- ✅ **Visualização mensal** interativa
-- ✅ **CRUD completo** de eventos
-
-### 📊 **Sistema de Relatórios Avançado**
-- ✅ **10 tipos de gráficos** interativos
-- ✅ **KPIs em tempo real** calculados
-- ✅ **Análises automáticas** (top performers, alunos em risco)
-- ✅ **Exportação** CSV/PNG profissional
-
-### 📋 **Boletim Individual**
-- ✅ **Dados reais** do banco por aluno
-- ✅ **Gráficos personalizados** de desempenho
-- ✅ **Cálculo automático** de médias e frequência
-- ✅ **Status de aprovação** dinâmico
-
-## 🛠️ Tecnologias Utilizadas
-
-### Frontend
-- **HTML5** - Estrutura das páginas
-- **CSS3** - Estilização moderna e responsiva
-- **JavaScript (Vanilla)** - Lógica e interação com API
-
-### Backend
-- **Python 3** - Linguagem de programação
-- **Flask** - Framework web integrado
-- **SQLite** - Banco de dados automático
-- **Flask-CORS** - Suporte a CORS
-
-## 📡 API Endpoints
-
-### Estatísticas
-- `GET /api/stats` - Retorna estatísticas do dashboard
-
-### Alunos
-- `GET /api/alunos` - Lista todos os alunos
-- `GET /api/alunos/<id>` - Busca um aluno específico
-- `POST /api/alunos` - Cria um novo aluno
-- `PUT /api/alunos/<id>` - Atualiza um aluno
-- `DELETE /api/alunos/<id>` - Exclui um aluno
-
-### Professores
-- `GET /api/professores` - Lista todos os professores
-- `POST /api/professores` - Cria um novo professor
-
-### Turmas
-- `GET /api/turmas` - Lista todas as turmas
-- `POST /api/turmas` - Cria uma nova turma
-
-### Matrículas
-- `GET /api/matriculas` - Lista todas as matrículas
-- `POST /api/matriculas` - Cria uma nova matrícula
-
-## 🗄️ Banco de Dados
-
-O sistema utiliza SQLite com as seguintes tabelas:
-
-- **alunos** - Informações dos alunos
-- **professores** - Informações dos professores
-- **turmas** - Informações das turmas
-- **matriculas** - Relacionamento entre alunos e turmas
-- **notas** - Notas dos alunos
-- **frequencia** - Registro de frequência
-- **eventos** - Calendário escolar
-- **usuarios** - Sistema de login
-
-## 🎨 Design
-
-O sistema possui um design moderno e responsivo com:
-- Sidebar de navegação fixa
-- Cards de estatísticas com ícones coloridos
-- Tabelas responsivas
-- Modais para formulários
-- Badges de status coloridos
-- Paleta de cores profissional (azul, verde, roxo, laranja)
-
-## 📋 Requisitos
-
-- **Python 3.7+** (instalação automática de dependências)
-- **Navegador web moderno** (Chrome, Firefox, Safari, Edge)
-
-## 🆘 Suporte
-
-Para problemas ou dúvidas, verifique:
-
-1. **Sistema não inicia:**
-   - Verifique se Python está instalado: `python --version`
-   - Execute: `python app.py` no terminal para ver erros
-
-2. **Página não carrega:**
-   - Aguarde alguns segundos após executar
-   - Acesse manualmente: `http://localhost:8000`
-
-3. **Dados não aparecem:**
-   - Verifique se o arquivo `escola.db` foi criado
-   - Reinicie o sistema: Ctrl+C e execute novamente
-
-4. **Erro de porta ocupada:**
-   - Feche outros programas que usem as portas 5000 ou 8000
-   - Ou reinicie o computador
-
-## 📄 Licença
-
-Este projeto foi desenvolvido para fins educacionais e de demonstração.
+</div>
 
 ---
 
-**🎓 Sistema pronto para uso! Execute `python app.py` e comece a gerenciar sua escola.**
+## ✨ **Destaques**
+
+- 🌐 **Funciona 100% offline** - Não precisa de servidor
+- 💾 **Dados salvos automaticamente** - localStorage do navegador
+- 🎨 **Interface moderna** - Design responsivo e profissional
+- 🔐 **Sistema de login** - Múltiplos tipos de usuário
+- 📊 **Dashboard completo** - Estatísticas em tempo real
+- 📱 **Mobile-friendly** - Funciona em qualquer dispositivo
+
+## 🎯 **Funcionalidades**
+
+### 👥 **Gestão de Pessoas**
+- ✅ **Alunos** - Cadastro completo com dados pessoais
+- ✅ **Professores** - Gestão com especialização por disciplina
+- ✅ **Usuários** - Sistema de permissões por cargo
+
+### 🏫 **Gestão Acadêmica**
+- ✅ **Turmas** - Criação e associação com professores
+- ✅ **Matrículas** - Sistema de vínculos aluno-turma
+- ✅ **Notas** - Lançamento por disciplina e bimestre
+- ✅ **Frequência** - Controle de presença por turma
+
+### 📅 **Calendário e Eventos**
+- ✅ **Calendário escolar** - Eventos e atividades
+- ✅ **Agenda** - Compromissos e reuniões
+- ✅ **Notificações** - Lembretes automáticos
+
+### 📊 **Relatórios e Analytics**
+- ✅ **Dashboard** - Estatísticas em tempo real
+- ✅ **Gráficos** - Visualização de dados
+- ✅ **Relatórios** - Desempenho e frequência
+- ✅ **Exportação** - Dados em CSV/PDF
+
+## 🚀 **Como Usar**
+
+### **Método 1: GitHub Pages (Recomendado)**
+```
+1. Acesse: https://seu-usuario.github.io/EducaGestaoDF/home.html
+2. Faça login com: admin@escola.com / admin123
+3. Comece a usar!
+```
+
+### **Método 2: Download Local**
+```bash
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/EducaGestaoDF.git
+
+# 2. Abra qualquer arquivo HTML no navegador
+# Windows:
+start home.html
+
+# Linux/Mac:
+open home.html
+```
+
+### **Método 3: Um Clique (Windows)**
+```bash
+# Baixe e execute
+abrir-sistema-local.bat
+```
+
+## 🔑 **Login Padrão**
+
+```
+👤 Administrador
+Email: admin@escola.com
+Senha: admin123
+
+👨‍🏫 Professor
+Email: professor@escola.com  
+Senha: prof123
+
+📋 Secretaria
+Email: secretaria@escola.com
+Senha: sec123
+```
+
+## 🛠️ **Tecnologias**
+
+<div align="center">
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![LocalStorage](https://img.shields.io/badge/LocalStorage-FF6B6B?style=for-the-badge&logo=html5&logoColor=white)
+
+</div>
+
+### **Frontend**
+- **HTML5** - Estrutura semântica
+- **CSS3** - Estilização moderna com Flexbox/Grid
+- **JavaScript (Vanilla)** - Lógica e interatividade
+- **LocalStorage** - Banco de dados local
+
+### **Recursos**
+- **Responsivo** - Mobile-first design
+- **PWA Ready** - Pode ser instalado como app
+- **Offline First** - Funciona sem internet
+- **Cross-platform** - Windows, Mac, Linux, Mobile
+
+## 📁 **Estrutura do Projeto**
+
+```
+EducaGestaoDF/
+├── 📄 home.html              # Dashboard principal
+├── 👥 alunos.html           # Gestão de alunos
+├── 👨‍🏫 professores.html      # Gestão de professores
+├── 🏫 turmas.html           # Gestão de turmas
+├── 📝 notas.html            # Sistema de notas
+├── 📅 calendario.html       # Calendário escolar
+├── 📊 relatorios.html       # Relatórios
+├── 🔐 index.html            # Página de login
+├── 📋 cadastro.html         # Cadastro de usuários
+├── 🎨 css/                  # Estilos CSS
+├── ⚡ js/                   # Scripts JavaScript
+│   ├── local-database.js    # Banco de dados local
+│   ├── login.js            # Sistema de autenticação
+│   └── ...                 # Outros módulos
+└── 🛠️ utils/               # Utilitários e testes
+```
+
+## 🎨 **Screenshots**
+
+<div align="center">
+
+### Dashboard Principal
+![Dashboard](https://via.placeholder.com/800x400/4f46e5/ffffff?text=Dashboard+Principal)
+
+### Gestão de Alunos
+![Alunos](https://via.placeholder.com/800x400/10b981/ffffff?text=Gestão+de+Alunos)
+
+### Sistema de Notas
+![Notas](https://via.placeholder.com/800x400/f59e0b/ffffff?text=Sistema+de+Notas)
+
+</div>
+
+## 🧪 **Testes**
+
+O sistema inclui páginas de teste para verificar funcionamento:
+
+```bash
+# Teste geral do sistema
+testar-sistema.bat
+
+# Teste específico de cadastro
+testar-cadastro.bat
+```
+
+**Ou acesse:**
+- [🧪 Teste Geral](teste-sistema.html)
+- [👤 Teste de Cadastro](teste-cadastro.html)
+
+## 📱 **Compatibilidade**
+
+### **Navegadores Suportados**
+- ✅ Chrome 60+
+- ✅ Firefox 55+
+- ✅ Safari 11+
+- ✅ Edge 79+
+- ✅ Opera 47+
+
+### **Sistemas Operacionais**
+- ✅ Windows 7+
+- ✅ macOS 10.12+
+- ✅ Linux (qualquer distribuição)
+- ✅ Android 7+ (Chrome/Firefox)
+- ✅ iOS 11+ (Safari)
+
+## 🤝 **Contribuindo**
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. **Fork** o projeto
+2. **Clone** seu fork
+3. **Crie** uma branch para sua feature
+4. **Commit** suas mudanças
+5. **Push** para a branch
+6. **Abra** um Pull Request
+
+```bash
+git clone https://github.com/seu-usuario/EducaGestaoDF.git
+cd EducaGestaoDF
+git checkout -b minha-feature
+git commit -m "Adiciona nova feature"
+git push origin minha-feature
+```
+
+## 📄 **Licença**
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🆘 **Suporte**
+
+### **Problemas Comuns**
+
+<details>
+<summary>❓ Sistema não carrega</summary>
+
+- Verifique se JavaScript está habilitado
+- Tente outro navegador
+- Limpe o cache (Ctrl+F5)
+</details>
+
+<details>
+<summary>❓ Dados não aparecem</summary>
+
+- Aguarde alguns segundos para carregar
+- Verifique o console (F12) para erros
+- Recarregue a página
+</details>
+
+<details>
+<summary>❓ Login não funciona</summary>
+
+- Use as credenciais padrão
+- Verifique se não está em modo privado
+- Limpe o localStorage se necessário
+</details>
+
+### **Contato**
+
+- 📧 **Email**: seu-email@exemplo.com
+- 🐛 **Issues**: [GitHub Issues](https://github.com/seu-usuario/EducaGestaoDF/issues)
+- 💬 **Discussões**: [GitHub Discussions](https://github.com/seu-usuario/EducaGestaoDF/discussions)
+
+## 🌟 **Roadmap**
+
+### **Versão 2.1** (Em breve)
+- [ ] Sistema de backup/restore
+- [ ] Mais tipos de relatórios
+- [ ] Integração com Google Classroom
+- [ ] Notificações push
+
+### **Versão 3.0** (Futuro)
+- [ ] PWA completo
+- [ ] Sincronização na nuvem
+- [ ] App mobile nativo
+- [ ] API REST opcional
+
+## 📈 **Estatísticas**
+
+<div align="center">
+
+![GitHub stars](https://img.shields.io/github/stars/seu-usuario/EducaGestaoDF?style=social)
+![GitHub forks](https://img.shields.io/github/forks/seu-usuario/EducaGestaoDF?style=social)
+![GitHub issues](https://img.shields.io/github/issues/seu-usuario/EducaGestaoDF)
+![GitHub license](https://img.shields.io/github/license/seu-usuario/EducaGestaoDF)
+
+</div>
+
+---
+
+<div align="center">
+
+**⭐ Se este projeto te ajudou, deixe uma estrela!**
+
+**🚀 [Experimente agora mesmo!](https://seu-usuario.github.io/EducaGestaoDF/home.html)**
+
+</div>
