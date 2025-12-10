@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EducaGestaoDF - Sistema de Gestão Escolar</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body class="login-body">
+    <div class="login-container">
+        <!-- Background Pattern -->
+        <div class="login-background">
+            <div class="pattern-overlay"></div>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login-card">
+            <!-- Logo Section -->
+            <div class="login-header">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path
+                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                    <h1 class="logo-title">EducaGestaoDF</h1>
+                </div>
+                <p class="login-subtitle">Sistema de Gestão Escolar</p>
+                <div id="accessTypeIndicator" style="margin-top: 1rem; padding: 0.75rem; border-radius: 8px; font-size: 0.9rem; display: none;"></div>
+            </div>
+
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email" class="form-label">E-mail</label>
+                    <div class="input-container">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="Digite seu e-mail"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Senha</label>
+                    <div class="input-container">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <circle cx="12" cy="16" r="1" />
+                            <path d="M7 11V7a5 5 0 0110 0v4" />
+                        </svg>
+                        <input type="password" id="password" name="password" class="form-input"
+                            placeholder="Digite sua senha" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember" name="remember">
+                        <span class="checkmark"></span>
+                        Lembrar de mim
+                    </label>
+                    <a href="#" class="forgot-password" onclick="showForgotPassword()">
+                        Esqueceu a senha?
+                    </a>
+                </div>
+
+                <button type="submit" class="login-button" id="loginButton">
+                    <span class="button-text">Entrar</span>
+                    <div class="button-loader" style="display: none;">
+                        <div class="spinner"></div>
+                    </div>
+                </button>
+
+                <!-- Cadastro Link -->
+                <div class="form-footer">
+                    <p>Não tem uma conta? <a href="cadastro.html" class="cadastro-link">Criar conta</a></p>
+                    <p style="margin-top: 0.5rem;"><a href="selecao-tipo.html" class="cadastro-link">← Voltar para seleção</a></p>
+                </div>
+
+            </form>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <p>&copy; 2025 EducaGestaoDF. Todos os direitos reservados.</p>
+            </div>
+        </div>
+
+        <!-- Alert Messages -->
+        <div class="alert-container" id="alertContainer"></div>
+    </div>
+
+    <!-- Sistema de Banco Local -->
+    <script src="js/local-database.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

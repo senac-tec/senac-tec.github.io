@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecione o Tipo de Acesso - EducaGestaoDF</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Padrão de fundo animado */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .selection-container {
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            stroke-width: 2;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .logo-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #764ba2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #764ba2;
+            opacity: 0.95;
+            margin-top: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .selection-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .selection-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .selection-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .selection-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .selection-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .selection-card:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .selection-card:active {
+            transform: translateY(-12px) scale(0.98);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            padding: 1.75rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.4s ease;
+        }
+
+        .selection-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .card-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke-width: 2.5;
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .selection-card:hover .card-title {
+            color: #667eea;
+        }
+
+        .card-description {
+            font-size: 1.05rem;
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            color: #16a34a;
+            flex-shrink: 0;
+        }
+
+        .card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .selection-card:hover .card-badge {
+            transform: scale(1.05);
+        }
+
+        .badge-admin {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #dc2626;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
+        }
+
+        .badge-professional {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            color: #16a34a;
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.9;
+            margin-top: 3rem;
+            font-size: 0.95rem;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+            margin: 0 0.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .logo-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .selection-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .selection-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .card-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .card-description {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Animação de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .selection-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .selection-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .selection-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        /* Efeito de clique */
+        @keyframes clickEffect {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="selection-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                </svg>
+                <h1 class="logo-title">EducaGestaoDF</h1>
+            </div>
+            <p class="subtitle">Selecione como deseja acessar o sistema</p>
+        </div>
+
+        <!-- Selection Grid -->
+        <div class="selection-grid">
+            <!-- Admin Card -->
+            <div class="selection-card" onclick="selectType('admin')">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h2 class="card-title">Administrador</h2>
+                    <p class="card-description">
+                        Acesso completo ao sistema com controle total sobre usuários, configurações e recursos administrativos.
+                    </p>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Gerenciar usuários do sistema</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Acesso a todos os relatórios</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Configurações avançadas</span>
+                        </div>
+                    </div>
+                    <span class="card-badge badge-admin">
+                        🔐 Acesso Total
+                    </span>
+                </div>
+            </div>
+
+            <!-- Professional Card -->
+            <div class="selection-card" onclick="selectType('professional')">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="card-title">Profissional</h2>
+                    <p class="card-description">
+                        Acesso para professores, coordenadores e secretaria. Gerencie turmas, alunos, notas e frequência.
+                    </p>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Gerenciar turmas e alunos</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Lançar notas e frequência</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Acessar calendário escolar</span>
+                        </div>
+                    </div>
+                    <span class="card-badge badge-professional">
+                        👨‍🏫 Acesso Profissional
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 EducaGestaoDF. Todos os direitos reservados.</p>
+        </div>
+    </div>    <!-- Sistema de Banco Local -->
+    <script src="js/local-database.js"></script>
+    
+
+
+    <script>
+        // Limpar qualquer sessão existente ao carregar esta página
+        (function() {
+            // Limpar todas as sessões
+            localStorage.removeItem('educagestao_session');
+            sessionStorage.removeItem('educagestao_temp_session');
+            sessionStorage.removeItem('educagestao_active');
+            localStorage.removeItem('currentUser');
+            
+            console.log('Sessões limpas - Tela de seleção carregada');
+        })();
+
+        function selectType(type) {
+            // Salvar o tipo selecionado no sessionStorage
+            sessionStorage.setItem('userType', type);
+            
+            console.log('Tipo selecionado:', type);
+            
+            // Redirecionar para a página de login
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>
