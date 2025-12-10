@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de CAPTCHA</title>
+    <link rel="stylesheet" href="css/captcha.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        .info { background: #d1ecf1; border-color: #bee5eb; }
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #3730a3; }
+        .captcha-demo {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .demo-item {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Teste de CAPTCHA</h1>
+        
+        <div class="test-section info">
+            <h3>Sobre o Sistema CAPTCHA</h3>
+            <p>O sistema implementa 3 tipos de CAPTCHA que funcionam offline:</p>
+            <ul>
+                <li><strong>Matemático:</strong> Operações simples (+, -, *)</li>
+                <li><strong>Texto:</strong> Palavras relacionadas ao sistema escolar</li>
+                <li><strong>Padrão:</strong> Sequência de emojis com item faltante</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h3>🧮 CAPTCHA Matemático</h3>
+            <div id="mathCaptcha"></div>
+            <button onclick="testMathCaptcha()">Testar Resposta</button>
+            <div id="mathResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 CAPTCHA de Texto</h3>
+            <div id="textCaptcha"></div>
+            <button onclick="testTextCaptcha()">Testar Resposta</button>
+            <div id="textResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎨 CAPTCHA de Padrão</h3>
+            <div id="patternCaptcha"></div>
+            <button onclick="testPatternCaptcha()">Testar Resposta</button>
+            <div id="patternResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎲 CAPTCHA Aleatório</h3>
+            <p>Tipo selecionado automaticamente:</p>
+            <div id="randomCaptcha"></div>
+            <button onclick="testRandomCaptcha()">Testar Resposta</button>
+            <button onclick="refreshRandomCaptcha()">Novo CAPTCHA</button>
+            <div id="randomResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Estatísticas de Teste</h3>
+            <div id="stats">
+                <p>Testes realizados: <span id="totalTests">0</span></p>
+                <p>Acertos: <span id="correctTests">0</span></p>
+                <p>Erros: <span id="wrongTests">0</span></p>
+                <p>Taxa de acerto: <span id="successRate">0%</span></p>
+            </div>
+            <button onclick="resetStats()">Resetar Estatísticas</button>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 Links Úteis</h3>
+            <button onclick="window.location.href='index.html'">Testar no Login</button>
+            <button onclick="window.location.href='cadastro.html'">Testar no Cadastro</button>
+            <button onclick="window.location.href='esqueci-senha.html'">Testar na Recuperação</button>
+            <button onclick="window.location.href='teste-sistema.html'">Teste Geral</button>
+        </div>
+    </div>
+
+    <script src="js/captcha.js"></script>
+
+    <script>
+        let testStats = {
+            total: 0,
+            correct: 0,
+            wrong: 0
+        };
+
+        // Carregar estatísticas do localStorage
+        function loadStats() {
+            const saved = localStorage.getItem('captcha_test_stats');
+            if (saved) {
+                testStats = JSON.parse(saved);
+                updateStatsDisplay();
+            }
+        }
+
+        // Salvar estatísticas
+        function saveStats() {
+            localStorage.setItem('captcha_test_stats', JSON.stringify(testStats));
+            updateStatsDisplay();
+        }
+
+        // Atualizar display das estatísticas
+        function updateStatsDisplay() {
+            document.getElementById('totalTests').textContent = testStats.total;
+            document.getElementById('correctTests').textContent = testStats.correct;
+            document.getElementById('wrongTests').textContent = testStats.wrong;
+            
+            const rate = testStats.total > 0 ? Math.round((testStats.correct / testStats.total) * 100) : 0;
+            document.getElementById('successRate').textContent = rate + '%';
+        }
+
+        // Registrar resultado do teste
+        function recordTest(isCorrect) {
+            testStats.total++;
+            if (isCorrect) {
+                testStats.correct++;
+            } else {
+                testStats.wrong++;
+            }
+            saveStats();
+        }
+
+        // Testar CAPTCHA matemático
+        function testMathCaptcha() {
+            if (!window.captchaManager) return;
+            
+            const answer = captchaManager.getUserAnswer();
+            const isCorrect = captchaManager.verifyCaptcha(answer);
+            
+            const result = document.getElementById('mathResult');
+            if (isCorrect) {
+                result.innerHTML = '<div class="success">✅ Resposta correta!</div>';
+                recordTest(true);
+            } else {
+                result.innerHTML = '<div class="error">❌ Resposta incorreta. Tente novamente.</div>';
+                recordTest(false);
+            }
+            
+            // Gerar novo CAPTCHA
+            setTimeout(() => {
+                captchaManager.renderCaptcha('mathCaptcha');
+            }, 2000);
+        }
+
+        // Testar CAPTCHA de texto
+        function testTextCaptcha() {
+            if (!window.captchaManager) return;
+            
+            const answer = captchaManager.getUserAnswer();
+            const isCorrect = captchaManager.verifyCaptcha(answer);
+            
+            const result = document.getElementById('textResult');
+            if (isCorrect) {
+                result.innerHTML = '<div class="success">✅ Resposta correta!</div>';
+                recordTest(true);
+            } else {
+                result.innerHTML = '<div class="error">❌ Resposta incorreta. Tente novamente.</div>';
+                recordTest(false);
+            }
+            
+            // Gerar novo CAPTCHA
+            setTimeout(() => {
+                captchaManager.renderCaptcha('textCaptcha');
+            }, 2000);
+        }
+
+        // Testar CAPTCHA de padrão
+        function testPatternCaptcha() {
+            if (!window.captchaManager) return;
+            
+            const answer = captchaManager.getUserAnswer();
+            const isCorrect = captchaManager.verifyCaptcha(answer);
+            
+            const result = document.getElementById('patternResult');
+            if (isCorrect) {
+                result.innerHTML = '<div class="success">✅ Resposta correta!</div>';
+                recordTest(true);
+            } else {
+                result.innerHTML = '<div class="error">❌ Resposta incorreta. Tente novamente.</div>';
+                recordTest(false);
+            }
+            
+            // Gerar novo CAPTCHA
+            setTimeout(() => {
+                captchaManager.renderCaptcha('patternCaptcha');
+            }, 2000);
+        }
+
+        // Testar CAPTCHA aleatório
+        function testRandomCaptcha() {
+            if (!window.captchaManager) return;
+            
+            const answer = captchaManager.getUserAnswer();
+            const isCorrect = captchaManager.verifyCaptcha(answer);
+            
+            const result = document.getElementById('randomResult');
+            if (isCorrect) {
+                result.innerHTML = '<div class="success">✅ Resposta correta!</div>';
+                recordTest(true);
+            } else {
+                result.innerHTML = '<div class="error">❌ Resposta incorreta. Tente novamente.</div>';
+                recordTest(false);
+            }
+        }
+
+        // Atualizar CAPTCHA aleatório
+        function refreshRandomCaptcha() {
+            if (!window.captchaManager) return;
+            captchaManager.refreshCaptcha('randomCaptcha');
+        }
+
+        // Resetar estatísticas
+        function resetStats() {
+            testStats = { total: 0, correct: 0, wrong: 0 };
+            saveStats();
+        }
+
+        // Inicializar quando DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStats();
+            
+            setTimeout(() => {
+                if (window.captchaManager) {
+                    // Gerar CAPTCHAs específicos
+                    captchaManager.currentCaptcha = captchaManager.generateCaptcha('math');
+                    captchaManager.renderCaptcha('mathCaptcha');
+                    
+                    captchaManager.currentCaptcha = captchaManager.generateCaptcha('text');
+                    captchaManager.renderCaptcha('textCaptcha');
+                    
+                    captchaManager.currentCaptcha = captchaManager.generateCaptcha('pattern');
+                    captchaManager.renderCaptcha('patternCaptcha');
+                    
+                    // CAPTCHA aleatório
+                    captchaManager.renderCaptcha('randomCaptcha');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

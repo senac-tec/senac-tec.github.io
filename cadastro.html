@@ -7,6 +7,8 @@
     <title>Criar Conta - EducaGestaoDF</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/captcha.css">
+    <link rel="stylesheet" href="css/robot-detection.css">
 </head>
 
 <body class="login-body">
@@ -133,6 +135,12 @@
                     </div>
                 </div>
 
+                <!-- CAPTCHA -->
+                <div id="registerCaptcha"></div>
+
+                <!-- Robot Detection -->
+                <div id="registerRobotTest"></div>
+
                 <button type="submit" class="login-button" id="registerButton">
                     <span class="button-text">Criar Conta</span>
                     <div class="button-loader" style="display: none;">
@@ -155,11 +163,12 @@
 
         <!-- Alert Messages -->
         <div class="alert-container" id="alertContainer"></div>
-    </div>    <!-- Sistema de Banco Local -->
-    <script src="js/local-database.js"></script>
+    </div>
     
-
-
+    <!-- Sistema de Banco Local -->
+    <script src="js/local-database.js"></script>
+    <script src="js/captcha.js"></script>
+    <script src="js/robot-detection.js"></script>
     <script src="js/cadastro.js"></script>
 </body>
 

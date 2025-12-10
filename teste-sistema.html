@@ -73,6 +73,26 @@
         </div>
 
         <div class="test-section">
+            <h3>Teste de Recuperação de Senha</h3>
+            <button onclick="testarRecuperacao()">Testar Recuperação</button>
+            <div id="recuperacaoResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Teste de CAPTCHA</h3>
+            <button onclick="testarCaptcha()">Testar CAPTCHA</button>
+            <div id="captchaResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Links Úteis</h3>
+            <button onclick="window.location.href='teste-captcha.html'">Teste CAPTCHA</button>
+            <button onclick="window.location.href='ajuda-recuperacao.html'">Ajuda Recuperação</button>
+            <button onclick="window.location.href='esqueci-senha.html'">Página Recuperação</button>
+            <button onclick="window.location.href='cadastro.html'">Cadastro</button>
+        </div>
+
+        <div class="test-section">
             <h3>Console de Debug</h3>
             <div id="debugConsole" style="height: 200px; overflow-y: auto; background: #f8f9fa; padding: 10px; border: 1px solid #ddd;"></div>
         </div>
@@ -80,6 +100,7 @@
 
     <!-- Sistema de Banco Local -->
     <script src="js/local-database.js"></script>
+    <script src="js/captcha.js"></script>
 
     <script>
         // Interceptar console.log para mostrar no debug
@@ -194,6 +215,70 @@
             }
             
             result.innerHTML = `<div class="info">${resultados.join('<br>')}</div>`;
+        }
+
+        // Testar CAPTCHA
+        function testarCaptcha() {
+            const result = document.getElementById('captchaResult');
+            
+            if (typeof captchaManager === 'undefined') {
+                result.innerHTML = '<div class="error">❌ Sistema de CAPTCHA não carregado</div>';
+                return;
+            }
+            
+            try {
+                // Testar geração de CAPTCHA
+                const mathCaptcha = captchaManager.generateCaptcha('math');
+                const textCaptcha = captchaManager.generateCaptcha('text');
+                const patternCaptcha = captchaManager.generateCaptcha('pattern');
+                
+                result.innerHTML = `
+                    <div class="success">
+                        ✅ Sistema de CAPTCHA funcionando!<br>
+                        <strong>Tipos disponíveis:</strong><br>
+                        🧮 Matemático: ${mathCaptcha.question}<br>
+                        📝 Texto: ${textCaptcha.answer}<br>
+                        🎨 Padrão: ${patternCaptcha.options.length} opções<br><br>
+                        <button onclick="window.location.href='teste-captcha.html'">Testar Detalhado</button>
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ Erro no CAPTCHA: ${error.message}</div>`;
+            }
+        }
+
+        // Testar recuperação de senha
+        function testarRecuperacao() {
+            const result = document.getElementById('recuperacaoResult');
+            
+            if (typeof localDB === 'undefined') {
+                result.innerHTML = '<div class="error">❌ Banco local não disponível</div>';
+                return;
+            }
+            
+            const usuarios = localDB.getAll('usuarios');
+            
+            if (usuarios.length === 0) {
+                result.innerHTML = '<div class="error">❌ Nenhum usuário cadastrado</div>';
+                return;
+            }
+            
+            const admin = usuarios.find(u => u.email === 'admin@escola.com');
+            
+            if (admin) {
+                result.innerHTML = `
+                    <div class="success">
+                        ✅ Sistema de recuperação disponível!<br>
+                        <strong>Teste com:</strong><br>
+                        Email: admin@escola.com<br>
+                        Pergunta: Qual o nome da sua primeira escola?<br>
+                        Resposta: escola primaria<br><br>
+                        <button onclick="window.location.href='esqueci-senha.html'">Testar Agora</button>
+                    </div>
+                `;
+            } else {
+                result.innerHTML = '<div class="error">❌ Usuário admin não encontrado</div>';
+            }
         }
 
         // Inicializar testes

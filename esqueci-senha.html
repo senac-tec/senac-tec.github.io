@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha - EducaGestãoDF</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/captcha.css">
+    <link rel="stylesheet" href="css/robot-detection.css">
+</head>
+
+<body class="login-body">
+    <div class="login-container">
+        <!-- Background Pattern -->
+        <div class="login-background">
+            <div class="pattern-overlay"></div>
+        </div>
+
+        <!-- Recovery Card -->
+        <div class="login-card">
+            <!-- Logo Section -->
+            <div class="login-header">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                    <h1 class="logo-title">EducaGestãoDF</h1>
+                </div>
+                <p class="login-subtitle">Recuperar Senha</p>
+            </div>
+
+            <!-- Recovery Steps -->
+            <div class="recovery-steps">
+                <!-- Step 1: Email -->
+                <div class="recovery-step" id="step1">
+                    <h3>🔍 Encontrar sua conta</h3>
+                    <p>Digite seu e-mail para encontrar sua conta:</p>
+                    
+                    <form class="login-form" id="emailForm">
+                        <div class="form-group">
+                            <label for="email" class="form-label">E-mail</label>
+                            <div class="input-container">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                                <input type="email" id="email" name="email" class="form-input" 
+                                       placeholder="Digite seu e-mail" required>
+                            </div>
+                        </div>
+
+                        <!-- CAPTCHA -->
+                        <div id="recoveryCaptcha"></div>
+
+                        <!-- Robot Detection -->
+                        <div id="recoveryRobotTest"></div>
+
+                        <button type="submit" class="login-button" id="findAccountButton">
+                            <span class="button-text">Encontrar Conta</span>
+                            <div class="button-loader" style="display: none;">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Security Question -->
+                <div class="recovery-step" id="step2" style="display: none;">
+                    <h3>🔐 Verificação de Segurança</h3>
+                    <p>Responda à pergunta de segurança:</p>
+                    
+                    <div class="security-info">
+                        <div class="user-info" id="userInfo"></div>
+                        <div class="security-question" id="securityQuestion"></div>
+                    </div>
+
+                    <form class="login-form" id="securityForm">
+                        <div class="form-group">
+                            <label for="securityAnswer" class="form-label">Sua Resposta</label>
+                            <div class="input-container">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4"/>
+                                    <circle cx="12" cy="12" r="10"/>
+                                </svg>
+                                <input type="text" id="securityAnswer" name="securityAnswer" 
+                                       class="form-input" placeholder="Digite sua resposta" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="login-button" id="verifyAnswerButton">
+                            <span class="button-text">Verificar Resposta</span>
+                            <div class="button-loader" style="display: none;">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Step 3: New Password -->
+                <div class="recovery-step" id="step3" style="display: none;">
+                    <h3>🔑 Nova Senha</h3>
+                    <p>Crie uma nova senha para sua conta:</p>
+
+                    <form class="login-form" id="passwordForm">
+                        <div class="form-group">
+                            <label for="newPassword" class="form-label">Nova Senha</label>
+                            <div class="input-container">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                    <circle cx="12" cy="16" r="1" />
+                                    <path d="M7 11V7a5 5 0 0110 0v4" />
+                                </svg>
+                                <input type="password" id="newPassword" name="newPassword" 
+                                       class="form-input" placeholder="Digite a nova senha" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('newPassword')">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">Confirmar Senha</label>
+                            <div class="input-container">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                    <circle cx="12" cy="16" r="1" />
+                                    <path d="M7 11V7a5 5 0 0110 0v4" />
+                                </svg>
+                                <input type="password" id="confirmPassword" name="confirmPassword" 
+                                       class="form-input" placeholder="Confirme a nova senha" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="password-requirements">
+                            <p><strong>Requisitos da senha:</strong></p>
+                            <ul>
+                                <li id="req-length">Mínimo 6 caracteres</li>
+                                <li id="req-match">Senhas devem coincidir</li>
+                            </ul>
+                        </div>
+
+                        <button type="submit" class="login-button" id="changePasswordButton">
+                            <span class="button-text">Alterar Senha</span>
+                            <div class="button-loader" style="display: none;">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Step 4: Success -->
+                <div class="recovery-step" id="step4" style="display: none;">
+                    <div class="success-message">
+                        <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 12l2 2 4-4"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <h3>✅ Senha Alterada com Sucesso!</h3>
+                        <p>Sua senha foi alterada com sucesso. Agora você pode fazer login com a nova senha.</p>
+                        
+                        <button class="login-button" onclick="goToLogin()">
+                            <span class="button-text">Ir para Login</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="form-footer">
+                <p><a href="index.html" class="cadastro-link">← Voltar para Login</a></p>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <p>&copy; 2025 EducaGestãoDF. Todos os direitos reservados.</p>
+            </div>
+        </div>
+
+        <!-- Alert Messages -->
+        <div class="alert-container" id="alertContainer"></div>
+    </div>
+
+    <!-- Sistema de Banco Local -->
+    <script src="js/local-database.js"></script>
+    <script src="js/captcha.js"></script>
+    <script src="js/robot-detection.js"></script>
+    <script src="js/esqueci-senha.js"></script>
+
+    <style>
+        .recovery-steps {
+            width: 100%;
+        }
+
+        .recovery-step {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .security-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .user-info {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .security-question {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .password-requirements {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .password-requirements ul {
+            margin: 10px 0 0 20px;
+            padding: 0;
+        }
+
+        .password-requirements li {
+            margin: 5px 0;
+            color: var(--text-secondary);
+        }
+
+        .password-requirements li.valid {
+            color: var(--success);
+        }
+
+        .password-requirements li.invalid {
+            color: var(--danger);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            color: var(--success);
+            margin: 0 auto 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body>
+</html>

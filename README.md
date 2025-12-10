@@ -20,7 +20,7 @@
 - 🌐 **Funciona 100% offline** - Não precisa de servidor
 - 💾 **Dados salvos automaticamente** - localStorage do navegador
 - 🎨 **Interface moderna** - Design responsivo e profissional
-- 🔐 **Sistema de login** - Múltiplos tipos de usuário
+- 🔐 **Sistema de login completo** - Login, cadastro e recuperação de senha
 - 📊 **Dashboard completo** - Estatísticas em tempo real
 - 📱 **Mobile-friendly** - Funciona em qualquer dispositivo
 
@@ -30,6 +30,7 @@
 - ✅ **Alunos** - Cadastro completo com dados pessoais
 - ✅ **Professores** - Gestão com especialização por disciplina
 - ✅ **Usuários** - Sistema de permissões por cargo
+- ✅ **Recuperação de senha** - Sistema de perguntas de segurança
 
 ### 🏫 **Gestão Acadêmica**
 - ✅ **Turmas** - Criação e associação com professores
