@@ -1,0 +1,140 @@
+/* Correções de Layout para Acessibilidade */
+
+/* Garantir que cards sempre tenham fundo branco com cores personalizadas */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .stats-card,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .card,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .activity-card,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .calendar-card {
+    background: white !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Main content sempre com fundo claro */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .main-content {
+    background: #f8f9fa !important;
+}
+
+/* Header sempre visível */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .header {
+    background: white !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Textos sempre legíveis */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .card h3,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .card h4,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .card p,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .stats-card h3,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .stats-card p {
+    color: #333 !important;
+}
+
+/* Sidebar com gradiente personalizado */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .sidebar {
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Botões primários com cores personalizadas */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .btn-primary,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) button.primary {
+    color: white !important;
+    border: none !important;
+}
+
+/* Tabelas */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) table {
+    background: white !important;
+}
+
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) th {
+    background: #f8f9fa !important;
+    color: #333 !important;
+}
+
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) td {
+    color: #666 !important;
+}
+
+/* Inputs e formulários */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) input,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) select,
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) textarea {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    color: #333 !important;
+}
+
+/* Calendário */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .calendar-day {
+    color: #333 !important;
+}
+
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .calendar-day.today {
+    background: var(--primary-color, #667eea) !important;
+    color: white !important;
+}
+
+/* Atividades recentes */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .activity-item {
+    border-left: 3px solid var(--primary-color, #667eea) !important;
+}
+
+/* Badges e tags */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) .badge {
+    background: var(--primary-color, #667eea) !important;
+    color: white !important;
+}
+
+/* Links */
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) a:not(.nav-item):not(.btn) {
+    color: var(--primary-color, #667eea) !important;
+}
+
+body[data-custom-colors="true"]:not(.high-contrast):not(.dark-theme) a:not(.nav-item):not(.btn):hover {
+    text-decoration: underline !important;
+}
+
+/* Garantir contraste em modo escuro */
+body.dark-theme .stats-card,
+body.dark-theme .card,
+body.dark-theme .activity-card,
+body.dark-theme .calendar-card {
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
+}
+
+body.dark-theme .main-content {
+    background: #0f172a !important;
+}
+
+/* Alto contraste sempre preto e branco */
+body.high-contrast * {
+    transition: none !important;
+    animation: none !important;
+}
+
+body.high-contrast .stats-card,
+body.high-contrast .card,
+body.high-contrast .activity-card,
+body.high-contrast .calendar-card {
+    background: white !important;
+    border: 4px solid black !important;
+}
+
+body.high-contrast .main-content {
+    background: white !important;
+}
+
+body.high-contrast .sidebar {
+    background: black !important;
+    border-right: 4px solid white !important;
+}
+
+body.high-contrast .nav-item {
+    color: white !important;
+}
+
+body.high-contrast .nav-item.active {
+    background: white !important;
+    color: black !important;
+}

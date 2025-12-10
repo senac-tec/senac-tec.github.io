@@ -1,0 +1,264 @@
+/* Estilos específicos para planilha de presença */
+
+.presenca-filters {
+    display: flex;
+    align-items: end;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group .form-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0;
+}
+
+.filter-group .form-select,
+.filter-group .form-input {
+    min-width: 200px;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.presenca-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.presenca-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.presenca-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.presenca-stats {
+    display: flex;
+    gap: 30px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-success {
+    color: var(--success) !important;
+}
+
+.stat-danger {
+    color: var(--danger) !important;
+}
+
+.presenca-table {
+    overflow-x: auto;
+}
+
+.presenca-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.presenca-table th {
+    background: var(--background);
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border);
+}
+
+.presenca-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.presenca-table tr:hover {
+    background: var(--background);
+}
+
+.presenca-table tr:nth-child(even) {
+    background: rgba(248, 250, 252, 0.5);
+}
+
+.presenca-table tr:nth-child(even):hover {
+    background: var(--background);
+}
+
+.aluno-numero {
+    font-weight: 600;
+    color: var(--text-secondary);
+    width: 60px;
+}
+
+.aluno-nome {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.presenca-radio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radio-input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.radio-input:checked {
+    transform: scale(1.1);
+}
+
+.presente-radio:checked {
+    accent-color: var(--success);
+}
+
+.ausente-radio:checked {
+    accent-color: var(--danger);
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.empty-state svg {
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    margin: 0 0 10px 0;
+    color: var(--text-primary);
+    font-size: 20px;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 14px;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .presenca-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-actions {
+        margin-left: 0;
+        justify-content: stretch;
+    }
+    
+    .filter-actions .btn {
+        flex: 1;
+    }
+    
+    .presenca-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+    
+    .presenca-stats {
+        justify-content: space-around;
+    }
+    
+    .presenca-table {
+        font-size: 14px;
+    }
+    
+    .presenca-table th,
+    .presenca-table td {
+        padding: 10px 8px;
+    }
+}
+
+/* Animações */
+.presenca-container {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-value {
+    transition: all 0.3s ease;
+}
+
+.radio-input {
+    transition: transform 0.2s ease;
+}
+
+.radio-input:hover {
+    transform: scale(1.05);
+}
+
+/* Estados de loading */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
